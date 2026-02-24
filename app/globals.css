@@ -133,6 +133,10 @@
 }
 
 @layer components {
+  #light-rays {
+    @apply absolute inset-0 top-0 z-[-1] min-h-screen;
+  }
+
   #home {
     .subheading {
       @apply text-light-100 text-lg max-sm:text-sm text-center mt-5;
