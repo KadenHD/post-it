@@ -171,6 +171,18 @@
     }
   }
 
+  #not-found {
+    @apply h-[calc(100vh-9rem)] flex flex-col items-center justify-center gap-4;
+
+    p {
+      @apply text-foreground/80;
+    }
+
+    code {
+      @apply bg-card-foreground/75 border border-border-dark px-3 py-2 rounded;
+    }
+  }
+
   .posts {
     @apply grid md:grid-cols-3 gap-10 sm:grid-cols-2 grid-cols-1;
   }
