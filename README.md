@@ -37,6 +37,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Ressources
+
+- [MongoDB Atlas](https://cloud.mongodb.com/)
+- [Cloudinary](https://console.cloudinary.com/)
+- [Posthog](https://posthog.com/)
+
 ## Acknowledgment
 
 This project was built by following the “[Next.js 16 Full Course | Build and Deploy a Production-Ready Full Stack App](https://youtu.be/I1V9YWqRIeI)” tutorial of [JavaScript Mastery](https://jsmastery.com/).
