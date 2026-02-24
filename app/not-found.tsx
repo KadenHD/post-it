@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation"
 
-export default function NotFound() {
+export default function NotFoundPage() {
     const pathname = usePathname()
 
     return (

@@ -1,37 +1,31 @@
 import Link from "next/link";
 import Image from "next/image";
+import PostDetailItem from "./PostDetailItem";
+import PostTags from "./PostTags";
 
-interface Props {
+export default function PostCard({slug, title, excerpt, image, tags, author, createdAt, updatedAt}: {
     slug:string;
     title: string;
     excerpt: string;
     image: string;
+    tags: string[];
     author: string;
-    publishedAt: string;
-}
-
-export default function PostCard({slug, title, excerpt, image, author, publishedAt}: Props) {
+    createdAt: string;
+    updatedAt: string;
+}) {
     return (
         <Link href={`/posts/${slug}`} id="post-card">
             <Image src={image} alt={title} width={410} height={300} className="poster" />
 
-            <div className="flex flex-row gap-2">
-                <Image src="/icons/mode.svg" alt="excerpt" width={14} height={14} />
-                <p>{excerpt}</p>
-            </div>
+            <PostDetailItem icon="/icons/mode.svg" alt="mode" label={excerpt} size={14} />
 
             <p className="title">{title}</p>
 
             <div className="datetime">
-                <div>
-                    <Image src="/icons/audience.svg" alt="author" width={14} height={14} />
-                    <p>{author}</p>
-                </div>
-                <div>
-                    <Image src="/icons/clock.svg" alt="time" width={14} height={14} />
-                    <p>{publishedAt}</p>
-                </div>
+                <PostDetailItem icon="/icons/audience.svg" alt="audience" label={author} size={14} />
+                <PostDetailItem icon="/icons/clock.svg" alt="clock" label={`${createdAt} (last modification: ${updatedAt})`} size={14} />
             </div>
+            <PostTags tags={JSON.parse(tags[0])}/>
         </Link>
     );
 }

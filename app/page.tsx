@@ -1,8 +1,12 @@
 import PostCard from "@/components/PostCard";
 import ExploreBtn from "@/components/ExploreBtn";
-import { posts } from "@/lib/constants";
+import { IPost } from "@/database";
 
-export default function Home() {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+export default async function Page() {
+  const response = await fetch(`${BASE_URL}/api/posts`);
+  const {posts} = await response.json()
+
   return (
     <section>
       <h1 className="text-center">The Hub for Every <br /> Dev Posts You Can't Miss</h1>
@@ -13,7 +17,7 @@ export default function Home() {
       <div className="mt-20 space-y-7">
         <h3>Featured Posts</h3>
         <ul className="posts">
-          {posts.map((post) => (
+          {posts && posts.length > 0 && posts.map((post: IPost) => (
             <li key={post.title}>
               <PostCard {...post} />
             </li>

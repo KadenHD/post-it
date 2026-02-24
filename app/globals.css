@@ -130,6 +130,37 @@
   ul {
     @apply list-none;
   }
+
+  /* Scroll Bar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-dark-100);
+    border-radius: 999px;
+    border: 1.5px solid var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-dark-200);
+  }
+
+  @media (max-width: 767px) {
+    * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    *::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 @layer components {
@@ -237,10 +268,10 @@
         }
       }
 
-      .booking {
+      .summary {
         @apply flex-1 w-full p-4 border-l border-gray-700;
 
-        .signup-card {
+        .summary-card {
           @apply bg-dark-100 border-dark-200 card-shadow flex w-full flex-col gap-6 rounded-[10px] border px-5 py-6;
         }
       }
