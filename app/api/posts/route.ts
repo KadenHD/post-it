@@ -19,6 +19,8 @@ export async function POST(req: NextRequest) {
 
         if (!file) return NextResponse.json({message: 'Image file is required'}, {status: 400})
 
+        let tags = JSON.parse(formData.get('tags') as string)
+
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
@@ -31,7 +33,10 @@ export async function POST(req: NextRequest) {
 
         post.image = (uploadResult as {secure_url:string}).secure_url
 
-        const createdPost = await Post.create(post);
+        const createdPost = await Post.create({
+            ...post,
+            tags: tags,
+        });
 
         return NextResponse.json({message: 'Post created successfully', post: createdPost}, {status: 201})
 

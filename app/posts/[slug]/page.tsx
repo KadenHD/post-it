@@ -1,6 +1,9 @@
+import PostCard from "@/components/PostCard";
 import PostDetailItem from "@/components/PostDetailItem";
 import PostSummaryContent from "@/components/PostSummaryContent";
 import PostTags from "@/components/PostTags";
+import { IPost } from "@/database";
+import { getSimilarPostBySlug } from "@/lib/actions/post.actions";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -11,6 +14,8 @@ export default async function PostDetailsPage({params}: {params: Promise<{slug: 
     const {post} = await response.json()
     if(!post) return notFound()
     const { title, excerpt, image, content, author, tags, createdAt, updatedAt} = post
+
+    const similarPosts: IPost[] = await getSimilarPostBySlug(slug)
 
     return (
         <section id="post">
@@ -35,7 +40,7 @@ export default async function PostDetailsPage({params}: {params: Promise<{slug: 
                         <PostDetailItem icon="/icons/clock.svg" alt="clock" label={`${createdAt} (last modification: ${updatedAt})`} size={17}/>
                     </section>
 
-                    <PostTags tags={JSON.parse(tags[0])}/>
+                    <PostTags tags={tags}/>
                 </div>
 
                 {/* RIGHT */}
@@ -49,6 +54,15 @@ export default async function PostDetailsPage({params}: {params: Promise<{slug: 
                         <PostSummaryContent />
                     </div>
                 </aside>
+            </div>
+
+            <div className="flex w-full flex-col gap-4 pt-20">
+                <h2>Similar Posts</h2>
+                <div className="posts">
+                    {similarPosts.length > 0 && similarPosts.map((similarPost: IPost) => (
+                        <PostCard key={similarPost.slug} {...similarPost} />
+                    ))}
+                </div>
             </div>
         </section>
     );

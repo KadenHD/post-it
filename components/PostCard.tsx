@@ -25,7 +25,7 @@ export default function PostCard({slug, title, excerpt, image, tags, author, cre
                 <PostDetailItem icon="/icons/audience.svg" alt="audience" label={author} size={14} />
                 <PostDetailItem icon="/icons/clock.svg" alt="clock" label={`${createdAt} (last modification: ${updatedAt})`} size={14} />
             </div>
-            <PostTags tags={JSON.parse(tags[0])}/>
+            <PostTags tags={tags}/>
         </Link>
     );
 }
