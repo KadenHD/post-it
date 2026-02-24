@@ -36,3 +36,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Acknowledgment
+
+This project was built by following the “[Next.js 16 Full Course | Build and Deploy a Production-Ready Full Stack App](https://youtu.be/I1V9YWqRIeI)” tutorial of [JavaScript Mastery](https://jsmastery.com/).
+
+I used the course as a foundation to understand the architecture, best practices, and deployment workflow of a full-stack application using Next.js.
+
+While I customized and adapted the features, structure, and logic to fit my own requirements, some parts of the design and layout may look similar to the original tutorial project.
+
+The purpose of this project is to showcase my understanding of full-stack development concepts and my ability to modify and extend an existing architecture to meet specific needs.
