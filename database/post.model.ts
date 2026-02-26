@@ -79,8 +79,6 @@ function generateSlug(title: string): string {
         .replace(/^-|-$/g, '');        // Remove leading/trailing hyphens
 }
 
-PostSchema.index({slug: 1}, {unique:true});  // Create unique index on slug for better performance
-
 const Post = models.Post || model<IPost>('Post', PostSchema);
 
 export default Post;
