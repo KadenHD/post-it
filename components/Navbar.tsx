@@ -11,8 +11,8 @@ export default function Navbar() {
                 </Link>
 
                 <ul>
-                    <Link href="/">Home</Link>
-                    <Link href="/">Posts</Link>
+                    <Link href="/#home">Home</Link>
+                    <Link href="/#posts">Posts</Link>
                     <Link href="/">Create Post</Link>
                 </ul>
             </nav>

@@ -106,9 +106,17 @@
   box-shadow: 0px 4px 40px 0px #00000066;
 }
 
+@utility scroll-offset-navbar {
+  @apply scroll-mt-24;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply scroll-smooth;
   }
 
   body {

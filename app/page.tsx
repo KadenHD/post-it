@@ -9,13 +9,13 @@ export default async function Page() {
 
   return (
     <section>
-      <h1 className="text-center">The Hub for Every <br /> Dev Posts You Can't Miss</h1>
+      <h1 id="home" className="text-center scroll-offset-navbar">The Hub for Every <br /> Dev Posts You Can't Miss</h1>
       <p className="text-center mt-5">Struggles, Breakthroughs, and Victories, All in One Place</p>
 
       <ExploreBtn />
 
       <div className="mt-20 space-y-7">
-        <h3>Featured Posts</h3>
+        <h3 id="posts" className="scroll-offset-navbar">Featured Posts</h3>
         <ul className="posts">
           {posts && posts.length > 0 && posts.map((post: IPost) => (
             <li key={post.title}>
