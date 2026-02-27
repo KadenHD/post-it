@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
     try {
         await connectDB()
-        const posts = await Post.find().sort({creadtedAt: -1})
+        const posts = await Post.find().sort({ creadtedAt: -1 }).lean()
         return NextResponse.json({message: 'Posts fetched successfully', posts}, {status: 200})
     } catch (error) {
         return NextResponse.json({message: 'Post fetching Failed', error: error }, {status: 500})
