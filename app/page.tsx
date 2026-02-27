@@ -15,7 +15,7 @@ export default async function Page() {
       <ExploreBtn />
 
       <div className="mt-20 space-y-7">
-        <h3 id="posts" className="scroll-offset-navbar">Featured Posts</h3>
+        <h2 id="posts" className="scroll-offset-navbar">Featured Posts</h2>
         <ul className="posts">
           {posts && posts.length > 0 && posts.map((post: IPost) => (
             <li key={post.title}>

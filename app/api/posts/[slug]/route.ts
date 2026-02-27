@@ -1,4 +1,5 @@
 import { IPost, Post } from "@/database"
+import { isoToLocal } from "@/lib/date";
 import connectDB from "@/lib/mongodb"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -14,7 +15,8 @@ export async function GET(req:  NextRequest, {params}: {params: Promise<{slug:st
         if (!post) {
             return NextResponse.json({message: `Post with slug '${sanitizedSlug}' not found`}, {status: 404})
         }
-        return NextResponse.json({message: 'Post fetched successfully', post}, {status: 200})
+        const formattedPost = {...post, createdAt: isoToLocal(post.createdAt), updatedAt: isoToLocal(post.updatedAt) }
+        return NextResponse.json({message: 'Post fetched successfully', post: formattedPost}, {status: 200})
     } catch (error) {
         return NextResponse.json({message: 'Failed to fetch post'}, {status: 500})
     }

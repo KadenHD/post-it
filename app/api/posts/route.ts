@@ -2,6 +2,7 @@ import { Post } from "@/database";
 import connectDB from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import {v2 as cloudinary} from "cloudinary"
+import { isoToLocal } from "@/lib/date";
 
 export async function POST(req: NextRequest) {
     try {
@@ -49,7 +50,8 @@ export async function GET() {
     try {
         await connectDB()
         const posts = await Post.find().sort({ creadtedAt: -1 }).lean()
-        return NextResponse.json({message: 'Posts fetched successfully', posts}, {status: 200})
+        const formattedPosts = posts.map(post => ({...post, createdAt: isoToLocal(post.createdAt), updatedAt: isoToLocal(post.updatedAt) }))
+        return NextResponse.json({message: 'Posts fetched successfully', posts: formattedPosts}, {status: 200})
     } catch (error) {
         return NextResponse.json({message: 'Post fetching Failed', error: error }, {status: 500})
     }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PostDetailItem from "./PostDetailItem";
 import PostTags from "./PostTags";
+import { dateFormat } from "@/lib/date";
 
 export default function PostCard({slug, title, excerpt, image, tags, author, createdAt, updatedAt}: {
     slug:string;
@@ -23,7 +24,7 @@ export default function PostCard({slug, title, excerpt, image, tags, author, cre
 
             <div className="datetime">
                 <PostDetailItem icon="/icons/audience.svg" alt="audience" label={author} size={14} />
-                <PostDetailItem icon="/icons/clock.svg" alt="clock" label={`${createdAt} (last modification: ${updatedAt})`} size={14} />
+                <PostDetailItem icon="/icons/clock.svg" alt="clock" label={dateFormat(createdAt, updatedAt)} size={14} />
             </div>
             <PostTags tags={tags}/>
         </Link>
