@@ -6,6 +6,7 @@ export interface IPost extends Document {
     excerpt: string,
     content: string,
     image: string,
+    imagePublicId: string,
     author: string,
     tags: string[],
     createdAt: string,
@@ -43,9 +44,14 @@ const PostSchema = new Schema<IPost>(
             required: [true, 'Image URL is required'],
             trim: true,
         },
+        imagePublicId: {
+            type: String,
+            required: true,
+        },
         author: {
             type: String,
             required: [true, 'Author is required'],
+            trim: true,
         },
         tags: {
             type: [String],
@@ -54,6 +60,7 @@ const PostSchema = new Schema<IPost>(
                 validator: (v: string[]) => v.length > 0,
                 message: 'At least one tag is required',
             },
+            trim: true,
         },
     },
     {
@@ -61,11 +68,20 @@ const PostSchema = new Schema<IPost>(
     }
 );
 
-PostSchema.pre('save', function () {
+PostSchema.pre('save', async function () {
     const post = this as IPost;
 
     if (post.isModified('title') || post.isNew) {
-        post.slug = generateSlug(post.title);
+        let baseSlug = generateSlug(post.title);
+        let slug = baseSlug;
+        let counter = 1;
+
+        while (await models.Post.findOne({ slug })) {
+            slug = `${baseSlug}-${counter}`;
+            counter++;
+        }
+
+        post.slug = slug;
     }
 });
 

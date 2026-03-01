@@ -5,6 +5,7 @@ import {v2 as cloudinary} from "cloudinary"
 import { isoToLocal } from "@/lib/date";
 
 export async function POST(req: NextRequest) {
+    let uploadedPublicId: string | null = null;
     try {
         await connectDB();
         const formData = await req.formData();
@@ -33,6 +34,9 @@ export async function POST(req: NextRequest) {
         })
 
         post.image = (uploadResult as {secure_url:string}).secure_url
+        post.imagePublicId = (uploadResult as {public_id:string}).public_id;
+
+        uploadedPublicId = post.imagePublicId;
 
         const createdPost = await Post.create({
             ...post,
@@ -42,6 +46,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({message: 'Post created successfully', post: createdPost}, {status: 201})
 
     } catch (error) {
+        if (uploadedPublicId) await cloudinary.uploader.destroy(uploadedPublicId);
         return NextResponse.json({message: 'Post Creation Failed', error: error instanceof Error ? error.message: 'Unknown'}, {status: 500})
     }
 }
@@ -49,7 +54,7 @@ export async function POST(req: NextRequest) {
 export async function GET() {
     try {
         await connectDB()
-        const posts = await Post.find().sort({ creadtedAt: -1 }).lean()
+        const posts = await Post.find().sort({ createdAt: -1 }).lean()
         const formattedPosts = posts.map(post => ({...post, createdAt: isoToLocal(post.createdAt), updatedAt: isoToLocal(post.updatedAt) }))
         return NextResponse.json({message: 'Posts fetched successfully', posts: formattedPosts}, {status: 200})
     } catch (error) {
