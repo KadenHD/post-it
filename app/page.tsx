@@ -18,7 +18,7 @@ export default async function Page() {
         <h2 id="posts" className="scroll-offset-navbar">Featured Posts</h2>
         <ul className="posts">
           {posts && posts.length > 0 && posts.map((post: IPost) => (
-            <li key={post.title}>
+            <li key={post.slug}>
               <PostCard {...post} />
             </li>
           ))}
