@@ -41,7 +41,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 - [MongoDB Atlas](https://cloud.mongodb.com/)
 - [Cloudinary](https://console.cloudinary.com/)
-- [Posthog](https://posthog.com/)
 
 ## Acknowledgment
 
