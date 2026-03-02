@@ -13,7 +13,7 @@ export default function Navbar() {
                 <ul>
                     <Link href="/#home">Home</Link>
                     <Link href="/#posts">Posts</Link>
-                    <Link href="/">Create Post</Link>
+                    <Link href="/create-post">Create Post</Link>
                 </ul>
             </nav>
         </header>
